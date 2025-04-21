@@ -1,0 +1,423 @@
+//
+// Calendar
+//
+
+// labels
+label {
+  &.primary-label, &.month-name, &.secondary-label {
+    font-size: 16pt;
+    font-weight: bold;
+    padding: $base_padding * 2;
+  }
+
+  &.primary-label, &.month-name {
+    color: $accent_color;
+  }
+
+  &.secondary-label {
+    color: $disabled_text_color;
+  }
+}
+
+calendar-view {
+  font-size: 10pt;
+
+  &:selected {
+    color: $accent_color;
+    font-weight: bold;
+  }
+}
+
+calendar-view.header,
+label.header {
+  font-size: 10pt;
+  font-weight: bold;
+  color: $disabled_text_color;
+}
+
+calendar-view.current,
+weekgrid.current {
+  background-color: gtkalpha($accent_color, 0.3);
+}
+
+popover.events {
+  background-color: $popover_bg_color;
+  color: $popover_fg_color;
+  padding: 0;
+
+  box {
+    border-top-left-radius: $button_radius;
+    border-top-right-radius: $button_radius;
+  }
+
+  list {
+    color: $view_fg_color;
+    background-color: $view_bg_color;
+    border-radius: $button_radius;
+  }
+
+  scrolledwindow {
+    border-width: 0;
+  }
+
+  button {
+    border-radius: $button_radius;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-style: solid none none;
+    box-shadow: none;
+  }
+}
+
+// Event widget
+event {
+  margin: 1px;
+  font-size: 0.9rem;
+
+  widget.content {
+    margin: 4px;
+  }
+
+  &.timed,
+  &:not(.slanted):not(.slanted-start):not(.slanted-end) {
+    border-radius: $button_radius;
+  }
+
+  &.timed widget.edge {
+    border-radius: $button_radius / 2;
+    min-width: 5px;
+  }
+
+  &.slanted-start,
+  &.slanted-end:dir(rtl) {
+    padding-left: $base_padding * 2 + 4px;
+    border-radius: 0 $button_radius / 2 $button_radius / 2 0;
+  }
+
+  &.slanted-end,
+  &.slanted-start:dir(rtl) {
+    padding-right: $base_padding * 2 + 4px;
+    border-radius: $button_radius / 2 0 0 $button_radius / 2;
+  }
+}
+
+// Event Popover
+popover.event-popover,
+popover.event-popover > contents {
+  padding: 0;
+}
+
+.search-viewport {
+  background-color: $view_bg_color;
+}
+
+// calendar popover
+.calendar-list {
+  background-color: transparent;
+
+  > list {
+    border-radius: 4px;
+  }
+}
+
+// defeats the ugly hover effect of the calendar color dot on buttons
+.calendar-color-image {
+  -gtk-icon-filter: none;
+}
+
+// adds a subtle shadow to the calendar color dot when it makes sense
+image.calendar-color-image,
+button:active:not(:backdrop) .calendar-color-image,
+button:checked:not(:backdrop) .calendar-color-image,
+.calendars-list .calendar-color-image:not(:backdrop):not(:disabled),
+.calendar-list .calendar-color-image:not(:backdrop):not(:disabled),
+.sources-button:not(:backdrop):not(:disabled) .calendar-color-image {
+  -gtk-icon-shadow: 0 1px gtkalpha(black, 0.1);
+}
+
+// Date chooser
+
+// month/year controls
+datechooser {
+  color: $sidebar_fg_color;
+
+  navigator { // add some space between the two controls
+    margin-right: $base_padding;
+    margin-left: $base_padding;
+    margin-bottom: $base_padding;
+  }
+
+  navigator {
+    label { font-weight: bold; }
+
+    button.flat,
+    button.pill,
+    button.image-button {
+      min-height: 24px;
+      min-width: 24px;
+      padding: $base_padding;
+    }
+  }
+
+  // day names and week numbers
+  .weeknum, .weekday {
+    color: $disabled_text_color;
+    font-size: smaller;
+  }
+
+  // days
+  button.day {
+    font-size: 10pt;
+    font-weight: normal;
+    margin: 2px;
+    padding: $base_padding - 2px;
+    min-height: 24px;
+    min-width: 24px;
+    transition: none;
+
+    dot {
+      background-color: $text_color;
+      border-radius: 50%;
+      min-height: $base_padding / 2;
+      min-width: $base_padding / 2;
+    }
+
+    &:selected, &.today:selected {
+      background-color: $accent_bg_color;
+      color: $accent_fg_color;
+      font-weight: bold;
+
+      dot { background-color: $accent_fg_color; }
+    }
+
+    &.today {
+      color: $accent_bg_color;
+
+      dot { background-color: $accent_bg_color; }
+    }
+
+    &.other-month {
+      &:not(:hover),
+      &:backdrop {
+        color: $secondary_disabled_text_color;
+
+        dot { background-color: $secondary_disabled_text_color; }
+      }
+
+      &:hover:not(:backdrop) {
+        color: $disabled_text_color;
+
+        dot { background-color: $disabled_text_color; }
+      }
+    }
+  }
+}
+
+// Week View CSS
+.week-header {
+  padding: 0;
+
+  & > box:first-child {
+    border-bottom: 1px solid $border_color
+  }
+
+  .week-number {
+    font-size: 16pt;
+    font-weight: bold;
+    padding: $base_padding * 2 $base_padding * 2 $base_padding * 3 $base_padding * 2;
+    color: $secondary_disabled_text_color;
+  }
+
+  &.week-temperature {
+    font-size: 10pt;
+    font-weight: bold;
+    color: $disabled_text_color;
+  }
+
+  &.lines {
+    color: $border_color
+  }
+}
+
+weekhourbar > label {
+  font-size: 10pt;
+  padding: 4px $base_padding;
+}
+
+.week-view .lines {
+  color: $border_color
+}
+
+weekgrid > widget.now-strip {
+  background-color: gtkalpha($accent_color, 0.8);
+  margin: 0 0 0 1px;
+  min-height: 3px;
+}
+
+weekgrid,
+.week-header {
+  &:selected, &.dnd {
+    background-color: gtkalpha($accent_color, 0.25);
+  }
+}
+
+// Month cell
+monthcell {
+  border: solid 1px $border_color;
+  border-width: 1px 0 0 1px;
+  background-color: transparent;
+  transition: background-color 200ms;
+
+  &:hover:not(.out-of-month):not(.today) {
+    background-color: $dialog_bg_color;
+    transition: background-color 200ms;
+    color: $text_color;
+  }
+
+  &:selected {
+    background-color: gtkalpha($accent_color, 0.1);
+
+    &:hover {
+      background-color: gtkalpha($accent_color, 0.2);
+    }
+
+    label.day-label { font-weight: bold; }
+  }
+
+  &:nth-child(7n + 1) { border-left-width: 0; }
+
+  &.today {
+    background-color: gtkalpha($accent_color, 0.2);
+
+    &:hover {
+      background-color: gtkalpha($accent_color, 0.3);
+      color: $accent_color;
+    }
+
+    &:selected {
+      background-color: gtkalpha($accent_color, 0.25);
+
+      &:hover {
+        background-color: gtkalpha($accent_color, 0.35);
+      }
+    }
+  }
+
+  label {
+    color: $text_color;
+    font-size: 0.9rem;
+
+    &.day-label {
+      font-size: 1rem;
+    }
+  }
+
+  &.out-of-month {
+    background-color: $button_color;
+
+    label {
+      color: $secondary_text_color;
+    }
+  }
+
+  button {
+    padding: 0 $base_padding;
+    border-radius: 0;
+    border-bottom: none;
+    border-right: none;
+  }
+}
+
+// Month popover
+monthpopover > box {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+.notes-section box > textview {
+  border-radius: $button_radius;
+  padding: $base_padding;
+
+  > text {
+    background: none;
+  }
+}
+
+// Agenda View CSS
+agenda-view {
+  list {
+    > row {
+      padding: 2px $base_padding * 2;
+    }
+
+    > label {
+      padding: $base_padding $base_padding * 2;
+    }
+  }
+
+  > scrolledwindow > viewport > list.background {
+    background-color: transparent;
+  }
+}
+
+label.no-events {
+  font-style: italic;
+}
+
+// Search
+searchbutton > popover > arrow {
+  background: none;
+  border: none;
+}
+
+// Month selector
+datechooser {
+  padding: $base_padding;
+
+  .current-week {
+    background: $hover_color;
+    color: $sidebar_fg_color;
+    border-radius: $button_radius;
+  }
+}
+
+menubutton {
+  &.sources-button {
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius: $button_radius;
+    border-top-style: none;
+    border-bottom-style: none;
+    
+    &:hover:not(:backdrop) {
+      background-image: none;
+      text-shadow: none;
+    }
+
+    > button {
+      border-radius: $button_radius;
+      min-height: 0;
+      padding: 0 $base_padding;
+
+      .title {
+        font-size: 10pt;
+        font-weight: normal;
+        padding: 0 $base_padding;
+      }
+
+      .subtitle {
+        font-size: 8pt;
+        padding: 0 $base_padding;
+      }
+
+      .calendar-color-image {
+        -gtk-icon-size: 12px;
+      }
+    }
+  }
+
+  stack > box {
+    border-spacing: $base_padding;
+  }
+}

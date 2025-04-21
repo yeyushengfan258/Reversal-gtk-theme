@@ -1,0 +1,48 @@
+
+//
+// Calculator
+//
+
+.display-container {
+  &.card {
+    box-shadow: none;
+    border: 1px solid $border_color;
+  }
+
+  .small &.card {
+    border-radius: 0;
+    border-width: 0 0 1px 0;
+  }
+
+  .history-view { background-color: $view_bg_color; }
+
+  #displayitem {
+    padding: 0 12px 8px 0;
+    font-size: 1.4em;
+    border-top: 1px solid $border_color;
+  }
+}
+
+.math-buttons button {
+  font-size: 1.1em;
+  padding: 2px $base_padding;
+
+  &.text-button {
+    padding-left: $base_padding * 2 + 4px;
+    padding-right: $base_padding * 2 + 4px;
+  }
+}
+
+leaflet {
+  button.number-button {
+    background-color: gtkalpha(currentColor, 0.1);
+
+    &:hover {
+      background-color: gtkalpha(currentColor, 0.2);
+    }
+
+    &:active {
+      background-color: gtkalpha(currentColor, 0.3);
+    }
+  }
+}

@@ -1,0 +1,16 @@
+//
+// Console
+//
+
+.exit-info {
+  padding: 6px;
+  border-top: 2px solid $accent_color;
+  background: gtkalpha($accent_color, 0.9);
+  color: $accent_fg_color;
+}
+
+.error .exit-info {
+  border-top: 2px solid $error_color;
+  background: gtkalpha($error_color, 0.9);
+  color: $error_fg_color;
+}

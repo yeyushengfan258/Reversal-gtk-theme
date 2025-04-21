@@ -1,0 +1,290 @@
+.quick-settings {
+  padding: $base_padding * 3 !important;
+  border-radius: $base_radius + $base_padding * 3 !important;
+  margin-top: 4px !important;
+
+  .icon-button, .button {
+    padding: $base_padding * 1.75;
+
+    > StIcon {
+      icon-size: $base_icon_size;
+    }
+  }
+}
+
+.quick-settings-grid {
+  spacing-rows: $base_padding * 2;
+  spacing-columns: $base_padding * 2;
+}
+
+.quick-toggle, .quick-toggle-has-menu {
+  border-radius: $base_radius;
+  min-width: 12em;
+  max-width: 12em;
+  min-height: $scalable_icon_size * 3; // use icon size so the button scales
+  border: none;
+}
+
+.quick-toggle {
+  background-color: $button !important;
+
+  &:hover {
+    background-color: $divider !important;
+  }
+
+  &:active {
+    background-color: rgba($text, 0.15) !important;
+  }
+
+  &:checked {
+    background-color: $primary !important;
+    color: $primary-text;
+
+    &:hover {
+      color: $primary-text;
+      @if $gnome_version == 'default' {
+        background-color: mix($text, $primary, 6%) !important;
+      } @else {
+        background-color: st-mix($text, $primary, 6%) !important;
+      }
+    }
+
+    &:active {
+      color: $primary-text;
+      @if $gnome_version == 'default' {
+        background-color: mix($text, $primary, 15%) !important;
+      } @else {
+        background-color: st-mix($text, $primary, 15%) !important;
+      }
+    }
+  }
+
+  & > StBoxLayout { spacing: $base_padding * 1.5; }
+
+  /* Move padding into the box; this is to allow menu arrows
+     to extend to the border */
+  &.button { padding: 0; }
+  & > StBoxLayout { padding: 0 $base_padding * 2; }
+  &:ltr > StBoxLayout { padding-left: $base_padding * 2.5; }
+  &:rtl > StBoxLayout { padding-right: $base_padding * 2.5; }
+
+  .quick-toggle-title {
+    @extend %heading;
+  }
+
+  .quick-toggle-subtitle {
+    @extend %caption;
+    font-weight: normal;
+  }
+
+  .quick-toggle-icon { icon-size: $base_icon_size; }
+}
+
+.quick-toggle-has-menu {
+  & .quick-toggle {
+    min-width: auto;
+    max-width: auto;
+
+    &:ltr { border-radius: $base_radius 0 0 $base_radius; }
+    &:ltr > StBoxLayout { padding-right: $scaled_padding * 1.5; }
+    &:rtl { border-radius: 0 $base_radius $base_radius 0; }
+    &:rtr > StBoxLayout { padding-left: $scaled_padding * 1.5; }
+
+    &:ltr:last-child { border-radius: $base_radius; }
+    &:rtl:last-child { border-radius: $base_radius; }
+  }
+
+  .quick-toggle-menu-button {
+    background-color: $button !important;
+    padding: $base_padding $base_padding * 1.75;
+    border: none !important;
+    color: $text;
+
+    &:hover {
+      background-color: $divider !important;
+    }
+
+    &:active {
+      background-color: rgba($text, 0.15) !important;
+    }
+
+    &:checked {
+      background-color: $primary !important;
+      color: $primary-text;
+  
+      &:hover {
+        color: $primary-text;
+        @if $gnome_version == 'default' {
+          background-color: mix($text, $primary, 6%) !important;
+        } @else {
+          background-color: st-mix($text, $primary, 6%) !important;
+        }
+      }
+  
+      &:active {
+        color: $primary-text;
+        @if $gnome_version == 'default' {
+          background-color: mix($text, $primary, 15%) !important;
+        } @else {
+          background-color: st-mix($text, $primary, 15%) !important;
+        }
+      }
+    }
+
+    &:ltr { border-radius: 0 $base_radius $base_radius 0; }
+    &:rtl { border-radius: $base_radius 0 0 $base_radius; }
+  }
+
+  .quick-toggle-separator {
+    width: 0;
+  }
+}
+
+.quick-slider {
+  & > StBoxLayout { spacing: $base_padding; }
+
+  .icon-button {
+    padding: $base_padding + 2px;
+  }
+
+  .slider-bin {
+    &:focus { @include button(focus); }
+    padding: $base_padding;
+    border-radius: $circular_radius;
+  }
+}
+
+.quick-toggle-menu {
+  background-color: $popover !important;
+  color: $text !important;
+  border-radius: $base_radius + $base_padding * 2 !important;
+  padding: $scaled_padding * 2;
+  margin: $base_padding * 2 $base_padding * 3 0;
+  border: none;
+  box-shadow: 0 1px 3px rgba(black, 0.15);
+
+  &:insensitive {
+    // override insensitive style on submenu
+    @include button(normal);
+  }
+
+  .popup-menu-item {
+    border-radius: $base_radius !important;
+
+    &:focus, &:hover, &.selected {
+      color: $text !important;
+      background-color: rgba($text, 0.1) !important;
+    }
+
+    &:active {
+      color: $text !important;
+      background-color: rgba($text, 0.2) !important;
+    }
+
+    > StIcon {
+      -st-icon-style: symbolic;
+      icon-size: $base_icon_size;
+    }
+  }
+
+  .popup-separator-menu-item {
+    padding: 0  !important;
+  }
+
+  & .header {
+    spacing-rows: $base_padding * 0.5;
+    spacing-columns: $base_padding * 2;
+    padding-bottom: $base_padding * 2;
+
+    & .icon {
+      icon-size: $medium_icon_size; // a non-standard symbolic size but ok
+      border-radius: $base_radius;
+      padding: 1.5 * $base_padding;
+      background-color: on($popover, divider) !important;
+
+      &.active {
+        background-color: $primary !important;
+        color: $primary-text;
+      }
+    }
+
+    & .title {
+      @extend %title_3;
+    }
+
+    & .subtitle {
+      @extend %caption_heading;
+    }
+  }
+}
+
+.quick-settings-system-item {
+  & > StBoxLayout { spacing: $base_padding * 2; }
+
+  .icon-button {
+    border-radius: $base_radius;
+
+    > StIcon {
+      -st-icon-style: symbolic;
+      icon-size: $base_icon_size;
+    }
+  }
+
+  & .power-item {
+    min-height: 0;
+    min-width: 0;
+
+    &:insensitive {
+      @include button(normal);
+      background-color: transparent;
+    }
+  }
+}
+
+.nm-network-item {
+  .wireless-secure-icon { icon-size: $scalable_icon_size * 0.5; } // half-size symbolic
+}
+
+.bt-device-item {
+  .popup-menu-icon { -st-icon-style: symbolic; }
+}
+
+.bt-menu-placeholder.popup-menu-item {
+  @extend %title_4;
+  text-align: center;
+
+  padding: 2em 4em;
+}
+
+.device-subtitle { color: $text-disabled; }
+
+.keyboard-brightness-level {
+  spacing: $base_padding;
+
+  .button:checked { @extend %default_button; }
+}
+
+// background apps
+
+.background-apps-quick-toggle {
+  min-height: to_em(40px);
+  background-color: transparent;
+
+  & StIcon { icon-size: $base_icon_size !important; }
+}
+
+.background-app-item {
+  & .title { @extend %heading; }
+  & .subtitle { @extend %caption; }
+  & .popup-menu-icon {
+    icon-size: $medium_icon_size !important;
+    -st-icon-style: regular !important;
+  }
+  & .icon-button {
+    padding: $base_padding;
+  }
+  & .spinner {
+    padding: $base_padding;
+  }
+  &.popup-inactive-menu-item { color: $text; }
+}
