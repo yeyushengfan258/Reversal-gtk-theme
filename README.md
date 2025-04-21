@@ -13,13 +13,6 @@
   - `gtk2-engines-murrine` on Debian, Ubuntu, etc.
 - `sassc` — build dependency
 
-
-## Donate
-
-If you like my project, you can buy me a coffee:
-
-<span class="paypal"><a href="https://www.paypal.me/vinceliuice" title="Donate to this project using Paypal"><img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal donate button" /></a></span>
-
 ## Installation
 
 ### Manual Installation
@@ -65,10 +58,6 @@ Run the following commands in the terminal:
 ```sh
 ./install.sh -l
 ```
-
-Default ColorSchemes themes will follow the system style now ! (switch [light/dark] mode)
-
-https://github.com/vinceliuice/Reversal-gtk-theme/assets/7604295/d5c24086-08bc-45a4-b4d9-124c02249216
 
 ### Fix for Flatpak
 
